@@ -54,7 +54,7 @@
 			return str;
 		}
 		
-		override public function toBytecode(indent:uint, context:ActionExecutionContext):String {
+		override public function toBytecode(indent:uint, contextArg:ActionExecutionContext):String {
 			var str:String = toBytecodeLabel(indent) + "with {"; 
 			var context:ActionExecutionContext = new ActionExecutionContext(withBody, context.cpool.concat(), labelCount);
 			for (var i:uint = 0; i < withBody.length; i++) {

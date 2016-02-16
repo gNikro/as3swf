@@ -137,7 +137,7 @@
 			return str;
 		}
 		
-		override public function toBytecode(indent:uint, context:ActionExecutionContext):String {
+		override public function toBytecode(indent:uint, contextArg:ActionExecutionContext):String {
 			var str:String = toBytecodeLabel(indent) + "defineFunction2 " + 
 				((functionName == null || functionName.length == 0) ? "" : functionName) +
 				"(" + functionParams.join(", ") + ") {";
