@@ -72,6 +72,8 @@
 			if (hasClipActions) {
 				clipActions = data.readCLIPACTIONS(version);
 			}
+			
+			checkPlaceState();
 		}
 		
 		protected function prepareBody():SWFData {

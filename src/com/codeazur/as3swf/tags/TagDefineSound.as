@@ -27,6 +27,12 @@
 			_soundData = new ByteArray();
 		}
 		
+		public function clear():void 
+		{
+			_soundData.clear();
+			_soundData = null;
+		}
+		
 		public static function create(id:uint, format:uint = SoundCompression.MP3, rate:uint = SoundRate.KHZ_44, size:uint = SoundSize.BIT_16, type:uint = SoundType.STEREO, sampleCount:uint = 0, aSoundData:ByteArray = null):TagDefineSound {
 			var defineSound:TagDefineSound = new TagDefineSound();
 			defineSound._characterId = id;

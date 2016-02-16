@@ -17,6 +17,12 @@
 			_bytes = new ByteArray();
 		}
 		
+		public function clear():void 
+		{
+			_bytes.clear();
+			_bytes = null;
+		}
+		
 		public static function create(abcData:ByteArray = null, aName:String = "", aLazyInitializeFlag:Boolean = true):TagDoABC {
 			var doABC:TagDoABC = new TagDoABC();
 			if (abcData != null && abcData.length > 0) {

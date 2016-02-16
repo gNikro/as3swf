@@ -18,6 +18,12 @@ package com.codeazur.as3swf.timeline
 			strips = [];
 		}
 		
+		public function clear():void
+		{
+			frameStripMap = null;
+			strips = null;
+		}
+		
 		public function appendStrip(type:uint, start:uint, end:uint):void {
 			if(type != LayerStrip.TYPE_EMPTY) {
 				var i:uint;

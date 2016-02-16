@@ -8,6 +8,11 @@ package com.codeazur.as3swf.events
 	{
 		protected var dispatcher:EventDispatcher;
 		
+		public function clear():void
+		{
+			//dispatcher = null;
+		}
+		
 		public function SWFEventDispatcher() {
 			dispatcher = new EventDispatcher(this);
 		}

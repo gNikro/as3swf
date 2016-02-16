@@ -24,6 +24,11 @@
 			data.readUI8(); // reserved, always 0
 		}
 		
+		public function clear():void 
+		{
+			
+		}
+		
 		public function publish(data:SWFData, version:uint):void {
 			data.writeTagHeader(type, 12);
 			data.writeUI16(textId);
@@ -48,5 +53,7 @@
 				"Thickness: " + thickness + ", " +
 				"Sharpness: " + sharpness;
 		}
+		
+	
 	}
 }

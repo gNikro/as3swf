@@ -14,6 +14,13 @@
 			_jpegTables = new ByteArray();
 		}
 		
+		public function clear():void 
+		{
+			if(_jpegTables)
+				_jpegTables.clear();
+			_jpegTables = null;
+		}
+		
 		public function get jpegTables():ByteArray { return _jpegTables; }
 		
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {

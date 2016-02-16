@@ -41,6 +41,8 @@
 			if (hasClipActions) {
 				clipActions = data.readCLIPACTIONS(version);
 			}
+			
+			checkPlaceState();
 		}
 		
 		override public function publish(data:SWFData, version:uint):void {

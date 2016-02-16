@@ -16,6 +16,12 @@ package com.codeazur.as3swf.tags
 			_binaryData = new ByteArray();
 		}
 		
+		public function clear():void 
+		{
+			_binaryData.clear();
+			_binaryData = null;
+		}
+		
 		public function get characterId():uint { return _characterId; }
 		public function set characterId(value:uint):void { _characterId = value; }
 

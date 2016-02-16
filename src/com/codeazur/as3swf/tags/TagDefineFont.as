@@ -17,6 +17,11 @@
 			_glyphShapeTable = new Vector.<SWFShape>();
 		}
 		
+				public function clear():void 
+		{
+			
+		}
+		
 		public function get characterId():uint { return _characterId; }
 		public function set characterId(value:uint):void { _characterId = value; }
 

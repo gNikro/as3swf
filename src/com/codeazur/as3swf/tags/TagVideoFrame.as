@@ -17,6 +17,12 @@
 			_videoData = new ByteArray();
 		}
 		
+		public function clear():void 
+		{
+			_videoData.clear();
+			_videoData = null;
+		}
+		
 		public function get videoData():ByteArray { return _videoData; }
 		
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {

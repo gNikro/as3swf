@@ -20,6 +20,11 @@
 			}
 		}
 		
+						public function clear():void 
+		{
+			
+		}
+		
 		public function publish(data:SWFData, version:uint):void {
 			var body:SWFData = new SWFData();
 			body.writeString(frameName);

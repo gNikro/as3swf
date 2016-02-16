@@ -20,7 +20,13 @@
 				parse(data);
 			}
 		}
-
+		
+		public function clear():void 
+		{
+			//xmin = xmax = ymin = ymax = null;
+			_rectangle = null;
+		}
+		
 		public function parse(data:SWFData):void {
 			data.resetBitsPending();
 			var bits:uint = data.readUB(5);
@@ -64,5 +70,7 @@
 		public function toStringSize():String {
 			return "(" + (Number(xmax) / 20 - Number(xmin) / 20) + "," + (Number(ymax) / 20 - Number(ymin) / 20) + ")";
 		}
+		
+	
 	}
 }

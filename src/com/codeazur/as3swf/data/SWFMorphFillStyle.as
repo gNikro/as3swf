@@ -23,6 +23,15 @@
 			}
 		}
 		
+		public function clear():void 
+		{
+			startGradientMatrix = null;
+			endGradientMatrix = null;
+			gradient = null;
+			startBitmapMatrix = null;
+			endBitmapMatrix = null;
+		}
+		
 		public function parse(data:SWFData, level:uint = 1):void {
 			type = data.readUI8();
 			switch(type) {
@@ -118,5 +127,7 @@
 			}
 			return str;
 		}
+		
+	
 	}
 }

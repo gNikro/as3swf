@@ -15,6 +15,11 @@
 		
 		protected var labelCount:uint;
 		
+		public function clear():void 
+		{
+			_actions = null;
+		}
+		
 		public function TagDoAction() {
 			_actions = new Vector.<IAction>();
 			labelCount = 0;

@@ -30,6 +30,13 @@
 			}
 		}
 		
+		public function clear():void 
+		{
+			if(fillType)
+				fillType.clear();
+			fillType = null;
+		}
+		
 		public function parse(data:SWFData, level:uint = 1):void {
 			_level = level;
 			width = data.readUI16();
@@ -65,5 +72,7 @@
 		public function toString():String {
 			return "[SWFLineStyle] Width: " + width + " Color: " + ((_level <= 2) ? ColorUtils.rgbToString(color) : ColorUtils.rgbaToString(color));
 		}
+		
+	
 	}
 }

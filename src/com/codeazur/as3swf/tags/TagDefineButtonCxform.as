@@ -15,6 +15,12 @@
 		
 		public function get characterId():uint { return _characterId; }
 		public function set characterId(value:uint):void { _characterId = value; }
+		
+		public function clear():void 
+		{
+			buttonColorTransform.clear();
+			buttonColorTransform = null;
+		}
 
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {
 			_characterId = data.readUI16();

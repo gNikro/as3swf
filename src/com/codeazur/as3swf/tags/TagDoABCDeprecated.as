@@ -14,6 +14,12 @@ package com.codeazur.as3swf.tags
 			_bytes = new ByteArray();
 		}
 
+		public function clear():void 
+		{
+			_bytes.clear();
+			_bytes = null;
+		}
+		
 		public static function create(abcData:ByteArray = null):TagDoABCDeprecated {
 			var doABC:TagDoABCDeprecated = new TagDoABCDeprecated();
 			if (abcData != null && abcData.length > 0) {

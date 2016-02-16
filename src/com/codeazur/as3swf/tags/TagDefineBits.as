@@ -22,6 +22,12 @@
 			_bitmapData = new ByteArray();
 		}
 		
+		public function clear():void 
+		{
+			_bitmapData.clear();
+			_bitmapData = null;
+		}
+		
 		public function get characterId():uint { return _characterId; }
 		public function set characterId(value:uint):void { _characterId = value; }
 

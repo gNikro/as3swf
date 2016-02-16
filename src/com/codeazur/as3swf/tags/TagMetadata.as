@@ -14,6 +14,11 @@
 			xmlString = data.readString();
 		}
 		
+						public function clear():void 
+		{
+			xmlString = null;
+		}
+		
 		public function publish(data:SWFData, version:uint):void {
 			var body:SWFData = new SWFData();
 			body.writeString(xmlString);

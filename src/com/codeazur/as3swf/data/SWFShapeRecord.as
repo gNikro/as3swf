@@ -31,5 +31,10 @@
 		public function toString(indent:uint = 0):String {
 			return "[SWFShapeRecord]";
 		}
+		
+		public function clear():void 
+		{
+			
+		}
 	}
 }

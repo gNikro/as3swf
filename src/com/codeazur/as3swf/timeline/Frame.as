@@ -3,6 +3,7 @@ package com.codeazur.as3swf.timeline
 	import com.codeazur.as3swf.tags.TagPlaceObject;
 	import com.codeazur.as3swf.tags.TagRemoveObject;
 	import com.codeazur.utils.StringUtils;
+	import swfdata.FrameObjectData;
 	
 	import flash.utils.Dictionary;
 
@@ -23,6 +24,14 @@ package com.codeazur.as3swf.timeline
 			this.tagIndexStart = tagIndexStart;
 			_objects = new Dictionary();
 			_characters = [];
+		}
+		
+		public function clear():void 
+		{
+			_objects = null;
+			_objectsSortedByDepth = null;
+			_characters = null;
+			label = null;
 		}
 		
 		public function get objects():Dictionary { return _objects; }
@@ -47,6 +56,7 @@ package com.codeazur.as3swf.timeline
 			return tagIndexEnd - tagIndexStart + 1;
 		}
 		
+		public var numObjects:int = 0;
 		public function placeObject(tagIndex:uint, tag:TagPlaceObject):void {
 			var frameObject:FrameObject = _objects[tag.depth] as FrameObject; 
 			if(frameObject) {
@@ -73,6 +83,7 @@ package com.codeazur.as3swf.timeline
 			} else {
 				// No character defined at specified depth. Create one.
 				_objects[tag.depth] = new FrameObject(tag.depth, tag.characterId, tag.className, tagIndex, 0, true);
+				numObjects++;
 			}
 			_objectsSortedByDepth = null;
 		}
@@ -103,5 +114,12 @@ package com.codeazur.as3swf.timeline
 			}
 			return str;
 		}
+		
+		public function addFrameObject(frameObjectData:FrameObjectData):void 
+		{
+			
+		}
+		
+
 	}
 }

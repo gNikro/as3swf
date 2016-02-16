@@ -26,6 +26,11 @@
 			_codeTable = new Vector.<uint>();
 		}
 		
+				public function clear():void 
+		{
+			
+		}
+		
 		public function get codeTable():Vector.<uint> { return _codeTable; }
 		
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void

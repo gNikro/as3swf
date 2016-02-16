@@ -123,5 +123,10 @@
 		public function toString():String {
 			return "(" + rMult + "," + gMult + "," + bMult + "," + rAdd + "," + gAdd + "," + bAdd + ")";
 		}
+		
+		public function clear():void 
+		{
+			
+		}
 	}
 }

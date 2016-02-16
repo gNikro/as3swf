@@ -15,5 +15,10 @@
 		public function toString():String {
 			return "Frame: " + frameNumber + ", Name: " + name;
 		}
+		
+		public function clear():void 
+		{
+			name = null;
+		}
 	}
 }

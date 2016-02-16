@@ -36,6 +36,28 @@
 			super(data, level);
 		}
 		
+		override public function clear():void 
+		{
+			
+			super.clear();
+			
+			var i:int;
+			
+			for (i = 0; i < _fillStyles.length; i++)
+			{
+				_fillStyles[i].clear();
+			}
+			
+			_fillStyles = null;
+			
+			for (i = 0; i < _lineStyles.length; i++)
+			{
+				_lineStyles[i].clear();
+			}
+			
+			_lineStyles = null;
+		}
+		
 		public function get fillStyles():Vector.<SWFFillStyle> { return _fillStyles; }
 		public function get lineStyles():Vector.<SWFLineStyle> { return _lineStyles; }
 		

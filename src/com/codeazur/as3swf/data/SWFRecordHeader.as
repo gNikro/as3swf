@@ -20,5 +20,10 @@
 		public function toString():String {
 			return "[SWFRecordHeader] type: " + type + ", headerLength: " + headerLength + ", contentlength: " + contentLength;
 		}
+		
+		public function clear():void 
+		{
+			
+		}
 	}
 }

@@ -14,6 +14,11 @@
 
 		public function TagFileAttributes() {}
 		
+						public function clear():void 
+		{
+			
+		}
+		
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {
 			var flags:uint = data.readUI8();
 			useDirectBlit = ((flags & 0x40) != 0);

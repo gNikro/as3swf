@@ -16,6 +16,24 @@
 
 		protected var _level:uint;
 		
+		public function clear():void
+		{
+			if(gradient)
+				gradient.clear();
+				
+			gradient = null;
+			
+			if(gradientMatrix)
+				gradientMatrix.clear();
+				
+			gradientMatrix = null;
+			
+			if(bitmapMatrix)
+				bitmapMatrix.clear();
+				
+			bitmapMatrix = null;
+		}
+		
 		public function SWFFillStyle(data:SWFData = null, level:uint = 1) {
 			if (data != null) {
 				parse(data, level);

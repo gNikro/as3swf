@@ -10,47 +10,66 @@
 		protected var _initialFillStyles:Vector.<SWFFillStyle>;
 		protected var _initialLineStyles:Vector.<SWFLineStyle>;
 		
-		public function SWFShapeWithStyle(data:SWFData = null, level:uint = 1, unitDivisor:Number = 20) {
+		public function SWFShapeWithStyle(data:SWFData = null, level:int = 1, unitDivisor:Number = 20) {
 			_initialFillStyles = new Vector.<SWFFillStyle>();
 			_initialLineStyles = new Vector.<SWFLineStyle>();
 			super(data, level, unitDivisor);
 		}
 		
+		override public function clear():void 
+		{
+			super.clear();
+			
+			var i:int;
+			for (i = 0; i < _initialFillStyles.length; i++)
+			{
+				_initialFillStyles[i].clear();
+			}
+			
+			for (i = 0; i < _initialLineStyles.length; i++)
+			{
+				_initialLineStyles[i].clear();
+			}
+			
+			_initialFillStyles = null;
+			_initialLineStyles = null;
+		}
+		
 		public function get initialFillStyles():Vector.<SWFFillStyle> { return _initialFillStyles; }
 		public function get initialLineStyles():Vector.<SWFLineStyle> { return _initialLineStyles; }
 		
-		override public function parse(data:SWFData, level:uint = 1):void {
+		override public function parse(data:SWFData, level:int = 1):void {
 			data.resetBitsPending();
-			var i:uint;
-			var fillStylesLen:uint = readStyleArrayLength(data, level);
+			var i:int;
+			var fillStylesLen:int = readStyleArrayLength(data, level);
 			for (i = 0; i < fillStylesLen; i++) {
 				initialFillStyles.push(data.readFILLSTYLE(level));
 			}
-			var lineStylesLen:uint = readStyleArrayLength(data, level);
+			var lineStylesLen:int = readStyleArrayLength(data, level);
 			for (i = 0; i < lineStylesLen; i++) {
 				initialLineStyles.push(level <= 3 ? data.readLINESTYLE(level) : data.readLINESTYLE2(level));
 			}
 			data.resetBitsPending();
-			var numFillBits:uint = data.readUB(4);
-			var numLineBits:uint = data.readUB(4);
+			var numFillBits:int = data.readUB(4);
+			var numLineBits:int = data.readUB(4);
 			readShapeRecords(data, numFillBits, numLineBits, level);
 		}
 		
-		override public function publish(data:SWFData, level:uint = 1):void {
+		override public function publish(data:SWFData, level:int = 1):void {
 			data.resetBitsPending();
-			var i:uint;
-			var fillStylesLen:uint = initialFillStyles.length;
+			var i:int;
+			var fillStylesLen:int = initialFillStyles.length;
 			writeStyleArrayLength(data, fillStylesLen, level);
 			for (i = 0; i < fillStylesLen; i++) {
 				initialFillStyles[i].publish(data, level);
 			}
-			var lineStylesLen:uint = initialLineStyles.length;
+			var lineStylesLen:int = initialLineStyles.length;
 			writeStyleArrayLength(data, lineStylesLen, level);
 			for (i = 0; i < lineStylesLen; i++) {
 				initialLineStyles[i].publish(data, level);
 			}
-			var fillBits:uint = data.calculateMaxBits(false, [getMaxFillStyleIndex()]);
-			var lineBits:uint = data.calculateMaxBits(false, [getMaxLineStyleIndex()]);
+			var fillBits:int = data.calculateMaxBits(false, [getMaxFillStyleIndex()]);
+			var lineBits:int = data.calculateMaxBits(false, [getMaxLineStyleIndex()]);
 			data.resetBitsPending();
 			data.writeUB(4, fillBits);
 			data.writeUB(4, lineBits);
@@ -63,8 +82,8 @@
 			super.export(handler);
 		}
 
-		override public function toString(indent:uint = 0):String {
-			var i:uint;
+		override public function toString(indent:int = 0):String {
+			var i:int;
 			var str:String = "";
 			if (_initialFillStyles.length > 0) {
 				str += "\n" + StringUtils.repeat(indent) + "FillStyles:";
@@ -81,15 +100,17 @@
 			return str + super.toString(indent);
 		}
 		
-		protected function readStyleArrayLength(data:SWFData, level:uint = 1):uint {
-			var len:uint = data.readUI8();
+
+		
+		protected function readStyleArrayLength(data:SWFData, level:int = 1):int {
+			var len:int = data.readUI8();
 			if (level >= 2 && len == 0xff) {
 				len = data.readUI16();
 			}
 			return len;
 		}
 		
-		protected function writeStyleArrayLength(data:SWFData, length:uint, level:uint = 1):void {
+		protected function writeStyleArrayLength(data:SWFData, length:int, level:int = 1):void {
 			if (level >= 2 && length > 0xfe) {
 				data.writeUI8(0xff);
 				data.writeUI16(length);

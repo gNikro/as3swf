@@ -24,6 +24,11 @@
 			}
 		}
 		
+		public function clear():void 
+		{
+			_envelopeRecords = null;
+		}
+		
 		public function get envelopeRecords():Vector.<SWFSoundEnvelope> { return _envelopeRecords; }
 		
 		public function parse(data:SWFData):void {

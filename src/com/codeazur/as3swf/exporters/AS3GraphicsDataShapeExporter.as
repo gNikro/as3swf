@@ -27,6 +27,11 @@ package com.codeazur.as3swf.exporters
 			super(swf);
 		}
 		
+		public function clear():void
+		{
+			_graphicsData = null;
+		}
+		
 		public function get graphicsData():Vector.<IGraphicsData> { return _graphicsData; }
 		
 		override public function beginShape():void {
@@ -109,6 +114,14 @@ package com.codeazur.as3swf.exporters
 		
 		override public function endLines():void {
 			cleanUpGraphicsPath();
+		}
+		
+		public function destroy():void 
+		{
+			swf = null;
+			_graphicsData = null;
+			tmpGraphicsPath = null;
+			tmpStroke = null;
 		}
 		
 		protected function cleanUpGraphicsPath():void {

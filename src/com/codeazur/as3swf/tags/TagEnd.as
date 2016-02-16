@@ -12,6 +12,11 @@
 			// Do nothing. The End tag has no body.
 		}
 		
+		public function clear():void 
+		{
+			
+		}
+		
 		public function publish(data:SWFData, version:uint):void {
 			data.writeTagHeader(type, 0);
 		}

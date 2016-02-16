@@ -46,6 +46,20 @@
 			}
 		}
 		
+		override public function clear():void 
+		{
+			super.clear();
+			
+			bytes.clear();
+			signature = null;
+			
+			if(frameSize)
+				frameSize.clear();
+				
+			frameSize = null;
+			compressionMethod = null;
+		}
+		
 		public function loadBytes(ba:ByteArray):void {
 			bytes.length = 0;
 			ba.position = 0;

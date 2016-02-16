@@ -20,6 +20,22 @@
 		
 		public function TagDefineButtonSound() {}
 		
+		public function clear():void 
+		{
+			buttonSoundInfo0.clear();
+			buttonSoundInfo0 = null;
+			
+			buttonSoundInfo1.clear();
+			buttonSoundInfo1 = null;
+			
+			buttonSoundInfo2.clear();
+			buttonSoundInfo2 = null;
+			
+			buttonSoundInfo3.clear();
+			buttonSoundInfo3 = null;
+			
+		}
+		
 		public function get characterId():uint { return _characterId; }
 		public function set characterId(value:uint):void { _characterId = value; }
 

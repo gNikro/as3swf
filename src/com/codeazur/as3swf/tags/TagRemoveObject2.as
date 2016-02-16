@@ -12,6 +12,7 @@
 			depth = data.readUI16();
 		}
 		
+		
 		override public function publish(data:SWFData, version:uint):void {
 			data.writeTagHeader(type, 2);
 			data.writeUI16(depth);

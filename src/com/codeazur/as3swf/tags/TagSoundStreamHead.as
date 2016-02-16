@@ -22,6 +22,11 @@
 		
 		public function TagSoundStreamHead() {}
 		
+		public function clear():void 
+		{
+			
+		}
+		
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {
 			data.readUB(4);
 			playbackSoundRate = data.readUB(2);

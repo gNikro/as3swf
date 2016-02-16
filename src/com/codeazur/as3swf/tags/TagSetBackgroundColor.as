@@ -17,6 +17,11 @@
 			return setBackgroundColor;
 		}
 		
+						public function clear():void 
+		{
+			
+		}
+		
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {
 			color = data.readRGB();
 		}

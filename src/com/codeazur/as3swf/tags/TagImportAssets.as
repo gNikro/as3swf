@@ -12,6 +12,11 @@
 		
 		protected var _symbols:Vector.<SWFSymbol>;
 		
+						public function clear():void 
+		{
+			_symbols = null;
+		}
+		
 		public function TagImportAssets() {
 			_symbols = new Vector.<SWFSymbol>();
 		}

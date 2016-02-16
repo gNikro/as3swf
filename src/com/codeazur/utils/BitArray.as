@@ -1,5 +1,6 @@
 ﻿package com.codeazur.utils
 {
+	import flash.geom.Matrix;
 	import flash.utils.ByteArray;
 	
 	public class BitArray extends ByteArray
@@ -86,5 +87,6 @@
 			}
 			return bits;
 		}
+		
 	}
 }

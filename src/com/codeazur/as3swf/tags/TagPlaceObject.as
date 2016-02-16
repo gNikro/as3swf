@@ -10,6 +10,11 @@
 	{
 		public static const TYPE:uint = 4;
 		
+		public static const PLACE_MODE_UNKNOWN:int = -1;
+		public static const PLACE_MODE_PLACE:int = 0;
+		public static const PLACE_MODE_REPLACE:int = 1;
+		public static const PLACE_MODE_MOVE:int = 2;
+		
 		public var hasClipActions:Boolean;
 		public var hasClipDepth:Boolean;
 		public var hasName:Boolean;
@@ -31,6 +36,8 @@
 		public var matrix:SWFMatrix;
 		public var colorTransform:SWFColorTransform;
 		
+		public var placeMode:int = PLACE_MODE_UNKNOWN;
+		
 		// Forward declarations for TagPlaceObject2
 		public var ratio:uint;
 		public var instanceName:String;
@@ -47,10 +54,26 @@
 		// Forward declarations for TagPlaceObject4
 		public var metaData:Object;
 		
+		
 		protected var _surfaceFilterList:Vector.<IFilter>;
 		
 		public function TagPlaceObject() {
 			_surfaceFilterList = new Vector.<IFilter>();
+		}
+		
+		public function clear():void 
+		{
+			instanceName = null;
+			clipActions = null;
+			className = null;
+			metaData = null;
+			
+			if (matrix)
+				matrix.clear();
+				
+			matrix = null;
+			colorTransform = null;
+			_surfaceFilterList = null;
 		}
 		
 		public function get surfaceFilterList():Vector.<IFilter> { return _surfaceFilterList; }
@@ -66,6 +89,17 @@
 				colorTransform = data.readCXFORM();
 				hasColorTransform = true;
 			}
+			checkPlaceState();
+		}
+		
+		protected function checkPlaceState():void
+		{
+			if ( !hasMove && hasCharacter ) 
+				placeMode = PLACE_MODE_PLACE;
+			else if ( hasMove && !hasCharacter ) 
+				placeMode = PLACE_MODE_MOVE;
+			else if ( hasMove && hasCharacter )
+				placeMode = PLACE_MODE_REPLACE;
 		}
 		
 		public function publish(data:SWFData, version:uint):void {

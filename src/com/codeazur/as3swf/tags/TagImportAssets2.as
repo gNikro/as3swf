@@ -17,6 +17,7 @@
 				_symbols.push(data.readSYMBOL());
 			}
 		}
+		
 
 		override public function publish(data:SWFData, version:uint):void {
 			var body:SWFData = new SWFData();

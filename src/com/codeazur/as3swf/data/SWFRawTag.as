@@ -14,6 +14,14 @@ package com.codeazur.as3swf.data
 			}
 		}
 		
+		public function clear():void
+		{
+			header.clear();
+			header = null;
+			bytes.clear();
+			bytes = null;
+		}
+		
 		public function parse(data:SWFData):void {
 			var pos:uint = data.position;
 			header = data.readTagHeader();

@@ -16,6 +16,14 @@
 		
 		public function TagDefineMorphShape2() {}
 		
+		override public function clear():void 
+		{
+			startEdgeBounds.clear();
+			startEdgeBounds = null;
+			endEdgeBounds.clear();
+			endEdgeBounds = null;
+		}
+		
 		override public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {
 			_characterId = data.readUI16();
 			startBounds = data.readRECT();

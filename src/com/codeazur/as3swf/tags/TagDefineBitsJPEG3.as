@@ -15,6 +15,14 @@
 			_bitmapAlphaData = new ByteArray();
 		}
 		
+		override public function clear():void 
+		{
+			super.clear();
+			
+			_bitmapAlphaData.clear();
+			_bitmapAlphaData = null;
+		}
+		
 		public function get bitmapAlphaData():ByteArray { return _bitmapAlphaData; }
 		
 		override public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {

@@ -22,7 +22,8 @@
 		// Integers
 		/////////////////////////////////////////////////////////
 		
-		public function readSI8():int {
+		[Inline]
+		public final function readSI8():int {
 			resetBitsPending();
 			return readByte();
 		}
@@ -32,7 +33,8 @@
 			writeByte(value);
 		}
 
-		public function readSI16():int {
+		[Inline]
+		public final function readSI16():int {
 			resetBitsPending();
 			return readShort();
 		}
@@ -42,7 +44,8 @@
 			writeShort(value);
 		}
 
-		public function readSI32():int {
+		[Inline]
+		public final function readSI32():int {
 			resetBitsPending();
 			return readInt();
 		}
@@ -52,7 +55,8 @@
 			writeInt(value);
 		}
 
-		public function readUI8():uint {
+		[Inline]
+		public final function readUI8():uint {
 			resetBitsPending();
 			return readUnsignedByte();
 		}
@@ -62,7 +66,8 @@
 			writeByte(value);
 		}
 
-		public function readUI16():uint {
+		[Inline]
+		public final function readUI16():uint {
 			resetBitsPending();
 			return readUnsignedShort();
 		}
@@ -72,7 +77,8 @@
 			writeShort(value);
 		}
 
-		public function readUI24():uint {
+		[Inline]
+		public final function readUI24():uint {
 			resetBitsPending();
 			var loWord:uint = readUnsignedShort();
 			var hiByte:uint = readUnsignedByte();
@@ -85,7 +91,8 @@
 			writeByte(value >> 16);
 		}
 		
-		public function readUI32():uint {
+		[Inline]
+		public final function readUI32():uint {
 			resetBitsPending();
 			return readUnsignedInt();
 		}
@@ -99,7 +106,8 @@
 		// Fixed-point numbers
 		/////////////////////////////////////////////////////////
 		
-		public function readFIXED():Number {
+		[Inline]
+		public final function readFIXED():Number {
 			resetBitsPending();
 			return readInt() / 65536;
 		}
@@ -109,7 +117,8 @@
 			writeInt(int(value * 65536));
 		}
 
-		public function readFIXED8():Number {
+		[Inline]
+		public final function readFIXED8():Number {
 			resetBitsPending();
 			return readShort() / 256;
 		}
@@ -123,7 +132,8 @@
 		// Floating-point numbers
 		/////////////////////////////////////////////////////////
 		
-		public function readFLOAT():Number {
+		[Inline]
+		public final function readFLOAT():Number {
 			resetBitsPending();
 			return readFloat();
 		}
@@ -133,7 +143,8 @@
 			writeFloat(value);
 		}
 
-		public function readDOUBLE():Number {
+		[Inline]
+		public final function readDOUBLE():Number {
 			resetBitsPending();
 			return readDouble();
 		}
@@ -143,7 +154,8 @@
 			writeDouble(value);
 		}
 
-		public function readFLOAT16():Number {
+		[Inline]
+		public final function readFLOAT16():Number {
 			resetBitsPending();
 			var word:uint = readUnsignedShort();
 			var sign:int = ((word & 0x8000) != 0) ? -1 : 1;
@@ -168,7 +180,8 @@
 			return sign * Math.pow(2, exponent - FLOAT16_EXPONENT_BASE) * (1 + significand / 1024);
 		}
 		
-		public function writeFLOAT16(value:Number):void {
+		[Inline]
+		public final function writeFLOAT16(value:Number):void {
 			HalfPrecisionWriter.write(value, this);
 		}
 
@@ -176,7 +189,8 @@
 		// Encoded integer
 		/////////////////////////////////////////////////////////
 		
-		public function readEncodedU32():uint {
+		[Inline]
+		public final function readEncodedU32():uint {
 			resetBitsPending();
 			var result:uint = readUnsignedByte();
 			if (result & 0x80) {
@@ -209,7 +223,8 @@
 		// Bit values
 		/////////////////////////////////////////////////////////
 		
-		public function readUB(bits:uint):uint {
+		[Inline]
+		public final function readUB(bits:uint):uint {
 			return readBits(bits);
 		}
 
@@ -217,7 +232,8 @@
 			writeBits(bits, value);
 		}
 
-		public function readSB(bits:uint):int {
+		[Inline]
+		public final function readSB(bits:uint):int {
 			var shift:uint = 32 - bits;
 			return int(readBits(bits) << shift) >> shift;
 		}
@@ -226,7 +242,8 @@
 			writeBits(bits, value);
 		}
 		
-		public function readFB(bits:uint):Number {
+		[Inline]
+		public final function readFB(bits:uint):Number {
 			return Number(readSB(bits)) / 65536;
 		}
 		
@@ -238,7 +255,8 @@
 		// String
 		/////////////////////////////////////////////////////////
 		
-		public function readString():String {
+		[Inline]
+		public final function readString():String {
 			var index:uint = position;
 			while (this[index++]) {}
 			resetBitsPending();
@@ -256,7 +274,8 @@
 		// Labguage code
 		/////////////////////////////////////////////////////////
 		
-		public function readLANGCODE():uint {
+		[Inline]
+		public final function readLANGCODE():uint {
 			resetBitsPending();
 			return readUnsignedByte();
 		}
@@ -270,7 +289,8 @@
 		// Color records
 		/////////////////////////////////////////////////////////
 		
-		public function readRGB():uint {
+		[Inline]
+		public final function readRGB():uint {
 			resetBitsPending();
 			var r:uint = readUnsignedByte();
 			var g:uint = readUnsignedByte();
@@ -285,7 +305,8 @@
 			writeByte(value  & 0xff);
 		}
 
-		public function readRGBA():uint {
+		[Inline]
+		public final function readRGBA():uint {
 			resetBitsPending();
 			var rgb:uint = readRGB() & 0x00ffffff;
 			var a:uint = readUnsignedByte();
@@ -298,14 +319,16 @@
 			writeByte((value >> 24) & 0xff);
 		}
 
-		public function readARGB():uint {
+		[Inline]
+		public final function readARGB():uint {
 			resetBitsPending();
 			var a:uint = readUnsignedByte();
 			var rgb:uint = readRGB() & 0x00ffffff;
 			return (a << 24) | rgb;
 		}
 		
-		public function writeARGB(value:uint):void {
+		[Inline]
+		public final function writeARGB(value:uint):void {
 			resetBitsPending();
 			writeByte((value >> 24) & 0xff);
 			writeRGB(value);
@@ -315,7 +338,8 @@
 		// Rectangle record
 		/////////////////////////////////////////////////////////
 		
-		public function readRECT():SWFRectangle {
+		[Inline]
+		public final function readRECT():SWFRectangle {
 			return new SWFRectangle(this);
 		}
 		
@@ -368,7 +392,8 @@
 		// Color transform records
 		/////////////////////////////////////////////////////////
 		
-		public function readCXFORM():SWFColorTransform {
+		[Inline]
+		public final function readCXFORM():SWFColorTransform {
 			return new SWFColorTransform(this);
 		}
 		
@@ -376,7 +401,8 @@
 			value.publish(this);
 		}
 
-		public function readCXFORMWITHALPHA():SWFColorTransformWithAlpha {
+		[Inline]
+		public final function readCXFORMWITHALPHA():SWFColorTransformWithAlpha {
 			return new SWFColorTransformWithAlpha(this);
 		}
 		
@@ -388,7 +414,8 @@
 		// Shape and shape records
 		/////////////////////////////////////////////////////////
 		
-		public function readSHAPE(unitDivisor:Number = 20):SWFShape {
+		[Inline]
+		public final function readSHAPE(unitDivisor:Number = 20):SWFShape {
 			return new SWFShape(this, 1, unitDivisor);
 		}
 		
@@ -396,7 +423,8 @@
 			value.publish(this);
 		}
 		
-		public function readSHAPEWITHSTYLE(level:uint = 1, unitDivisor:Number = 20):SWFShapeWithStyle {
+		[Inline]
+		public final function readSHAPEWITHSTYLE(level:uint = 1, unitDivisor:Number = 20):SWFShapeWithStyle {
 			return new SWFShapeWithStyle(this, level, unitDivisor);
 		}
 
@@ -404,7 +432,8 @@
 			value.publish(this, level);
 		}
 		
-		public function readSTRAIGHTEDGERECORD(numBits:uint):SWFShapeRecordStraightEdge {
+		[Inline]
+		public final function readSTRAIGHTEDGERECORD(numBits:uint):SWFShapeRecordStraightEdge {
 			return new SWFShapeRecordStraightEdge(this, numBits);
 		}
 		
@@ -412,7 +441,8 @@
 			value.publish(this);
 		}
 		
-		public function readCURVEDEDGERECORD(numBits:uint):SWFShapeRecordCurvedEdge {
+		[Inline]
+		public final function readCURVEDEDGERECORD(numBits:uint):SWFShapeRecordCurvedEdge {
 			return new SWFShapeRecordCurvedEdge(this, numBits);
 		}
 		
@@ -420,7 +450,8 @@
 			value.publish(this);
 		}
 		
-		public function readSTYLECHANGERECORD(states:uint, fillBits:uint, lineBits:uint, level:uint = 1):SWFShapeRecordStyleChange {
+		[Inline]
+		public final function readSTYLECHANGERECORD(states:uint, fillBits:uint, lineBits:uint, level:uint = 1):SWFShapeRecordStyleChange {
 			return new SWFShapeRecordStyleChange(this, states, fillBits, lineBits, level);
 		}
 		
@@ -435,7 +466,8 @@
 		// Fill- and Linestyles
 		/////////////////////////////////////////////////////////
 		
-		public function readFILLSTYLE(level:uint = 1):SWFFillStyle {
+		[Inline]
+		public final function readFILLSTYLE(level:uint = 1):SWFFillStyle {
 			return new SWFFillStyle(this, level);
 		}
 		
@@ -443,7 +475,8 @@
 			value.publish(this, level);
 		}
 		
-		public function readLINESTYLE(level:uint = 1):SWFLineStyle {
+		[Inline]
+		public final function readLINESTYLE(level:uint = 1):SWFLineStyle {
 			return new SWFLineStyle(this, level);
 		}
 		
@@ -451,7 +484,8 @@
 			value.publish(this, level);
 		}
 		
-		public function readLINESTYLE2(level:uint = 1):SWFLineStyle2 {
+		[Inline]
+		public final function readLINESTYLE2(level:uint = 1):SWFLineStyle2 {
 			return new SWFLineStyle2(this, level);
 		}
 		
@@ -463,7 +497,8 @@
 		// Button record
 		/////////////////////////////////////////////////////////
 		
-		public function readBUTTONRECORD(level:uint = 1):SWFButtonRecord {
+		[Inline]
+		public final function readBUTTONRECORD(level:uint = 1):SWFButtonRecord {
 			if (readUI8() == 0) {
 				return null;
 			} else {
@@ -476,7 +511,8 @@
 			value.publish(this, level);
 		}
 		
-		public function readBUTTONCONDACTION():SWFButtonCondAction {
+		[Inline]
+		public final function readBUTTONCONDACTION():SWFButtonCondAction {
 			return new SWFButtonCondAction(this);
 		}
 		
@@ -488,7 +524,8 @@
 		// Filter
 		/////////////////////////////////////////////////////////
 		
-		public function readFILTER():IFilter {
+		[Inline]
+		public final function readFILTER():IFilter {
 			var filterId:uint = readUI8();
 			var filter:IFilter = SWFFilterFactory.create(filterId);
 			filter.parse(this);
@@ -504,7 +541,8 @@
 		// Text record
 		/////////////////////////////////////////////////////////
 		
-		public function readTEXTRECORD(glyphBits:uint, advanceBits:uint, previousRecord:SWFTextRecord = null, level:uint = 1):SWFTextRecord {
+		[Inline]
+		public final function readTEXTRECORD(glyphBits:uint, advanceBits:uint, previousRecord:SWFTextRecord = null, level:uint = 1):SWFTextRecord {
 			if (readUI8() == 0) {
 				return null;
 			} else {
@@ -517,7 +555,8 @@
 			value.publish(this, glyphBits, advanceBits, previousRecord, level);
 		}
 
-		public function readGLYPHENTRY(glyphBits:uint, advanceBits:uint):SWFGlyphEntry {
+		[Inline]
+		public final function readGLYPHENTRY(glyphBits:uint, advanceBits:uint):SWFGlyphEntry {
 			return new SWFGlyphEntry(this, glyphBits, advanceBits);
 		}
 
@@ -529,7 +568,8 @@
 		// Zone record
 		/////////////////////////////////////////////////////////
 		
-		public function readZONERECORD():SWFZoneRecord {
+		[Inline]
+		public final function readZONERECORD():SWFZoneRecord {
 			return new SWFZoneRecord(this);
 		}
 
@@ -537,7 +577,8 @@
 			value.publish(this);
 		}
 		
-		public function readZONEDATA():SWFZoneData {
+		[Inline]
+		public final function readZONEDATA():SWFZoneData {
 			return new SWFZoneData(this);
 		}
 
@@ -549,7 +590,8 @@
 		// Kerning record
 		/////////////////////////////////////////////////////////
 		
-		public function readKERNINGRECORD(wideCodes:Boolean):SWFKerningRecord {
+		[Inline]
+		public final function readKERNINGRECORD(wideCodes:Boolean):SWFKerningRecord {
 			return new SWFKerningRecord(this, wideCodes);
 		}
 
@@ -561,7 +603,8 @@
 		// Gradients
 		/////////////////////////////////////////////////////////
 		
-		public function readGRADIENT(level:uint = 1):SWFGradient {
+		[Inline]
+		public final function readGRADIENT(level:uint = 1):SWFGradient {
 			return new SWFGradient(this, level);
 		}
 		
@@ -569,7 +612,8 @@
 			value.publish(this, level);
 		}
 		
-		public function readFOCALGRADIENT(level:uint = 1):SWFFocalGradient {
+		[Inline]
+		public final function readFOCALGRADIENT(level:uint = 1):SWFFocalGradient {
 			return new SWFFocalGradient(this, level);
 		}
 		
@@ -577,7 +621,8 @@
 			value.publish(this, level);
 		}
 		
-		public function readGRADIENTRECORD(level:uint = 1):SWFGradientRecord {
+		[Inline]
+		public final function readGRADIENTRECORD(level:uint = 1):SWFGradientRecord {
 			return new SWFGradientRecord(this, level);
 		}
 		
@@ -589,7 +634,8 @@
 		// Morphs
 		/////////////////////////////////////////////////////////
 		
-		public function readMORPHFILLSTYLE(level:uint = 1):SWFMorphFillStyle {
+		[Inline]
+		public final function readMORPHFILLSTYLE(level:uint = 1):SWFMorphFillStyle {
 			return new SWFMorphFillStyle(this, level);
 		}
 		
@@ -597,7 +643,8 @@
 			value.publish(this, level);
 		}
 		
-		public function readMORPHLINESTYLE(level:uint = 1):SWFMorphLineStyle {
+		[Inline]
+		public final function readMORPHLINESTYLE(level:uint = 1):SWFMorphLineStyle {
 			return new SWFMorphLineStyle(this, level);
 		}
 		
@@ -605,7 +652,8 @@
 			value.publish(this, level);
 		}
 		
-		public function readMORPHLINESTYLE2(level:uint = 1):SWFMorphLineStyle2 {
+		[Inline]
+		public final function readMORPHLINESTYLE2(level:uint = 1):SWFMorphLineStyle2 {
 			return new SWFMorphLineStyle2(this, level);
 		}
 		
@@ -613,7 +661,8 @@
 			value.publish(this, level);
 		}
 		
-		public function readMORPHGRADIENT(level:uint = 1):SWFMorphGradient {
+		[Inline]
+		public final function readMORPHGRADIENT(level:uint = 1):SWFMorphGradient {
 			return new SWFMorphGradient(this, level);
 		}
 		
@@ -621,7 +670,8 @@
 			value.publish(this, level);
 		}
 		
-		public function readMORPHFOCALGRADIENT(level:uint = 1):SWFMorphFocalGradient {
+		[Inline]
+		public final function readMORPHFOCALGRADIENT(level:uint = 1):SWFMorphFocalGradient {
 			return new SWFMorphFocalGradient(this, level);
 		}
 		
@@ -629,7 +679,8 @@
 			value.publish(this, level);
 		}
 		
-		public function readMORPHGRADIENTRECORD():SWFMorphGradientRecord {
+		[Inline]
+		public final function readMORPHGRADIENTRECORD():SWFMorphGradientRecord {
 			return new SWFMorphGradientRecord(this);
 		}
 		
@@ -641,7 +692,8 @@
 		// Action records
 		/////////////////////////////////////////////////////////
 		
-		public function readACTIONRECORD():IAction {
+		[Inline]
+		public final function readACTIONRECORD():IAction {
 			var pos:uint = position;
 			var action:IAction;
 			var actionCode:uint = readUI8();
@@ -657,7 +709,8 @@
 			action.publish(this);
 		}
 		
-		public function readACTIONVALUE():SWFActionValue {
+		[Inline]
+		public final function readACTIONVALUE():SWFActionValue {
 			return new SWFActionValue(this);
 		}
 		
@@ -665,7 +718,8 @@
 			value.publish(this);
 		}
 		
-		public function readREGISTERPARAM():SWFRegisterParam {
+		[Inline]
+		public final function readREGISTERPARAM():SWFRegisterParam {
 			return new SWFRegisterParam(this);
 		}
 		
@@ -677,7 +731,8 @@
 		// Symbols
 		/////////////////////////////////////////////////////////
 		
-		public function readSYMBOL():SWFSymbol {
+		[Inline]
+		public final function readSYMBOL():SWFSymbol {
 			return new SWFSymbol(this);
 		}
 		
@@ -689,7 +744,8 @@
 		// Sound records
 		/////////////////////////////////////////////////////////
 		
-		public function readSOUNDINFO():SWFSoundInfo {
+		[Inline]
+		public final function readSOUNDINFO():SWFSoundInfo {
 			return new SWFSoundInfo(this);
 		}
 		
@@ -697,7 +753,8 @@
 			value.publish(this);
 		}
 		
-		public function readSOUNDENVELOPE():SWFSoundEnvelope {
+		[Inline]
+		public final function readSOUNDENVELOPE():SWFSoundEnvelope {
 			return new SWFSoundEnvelope(this);
 		}
 		
@@ -709,7 +766,8 @@
 		// ClipEvents
 		/////////////////////////////////////////////////////////
 		
-		public function readCLIPACTIONS(version:uint):SWFClipActions {
+		[Inline]
+		public final function readCLIPACTIONS(version:uint):SWFClipActions {
 			return new SWFClipActions(this, version);
 		}
 		
@@ -717,7 +775,8 @@
 			value.publish(this, version);
 		}
 		
-		public function readCLIPACTIONRECORD(version:uint):SWFClipActionRecord {
+		[Inline]
+		public final function readCLIPACTIONRECORD(version:uint):SWFClipActionRecord {
 			var pos:uint = position;
 			var flags:uint = (version >= 6) ? readUI32() : readUI16();
 			if (flags == 0) {
@@ -732,7 +791,8 @@
 			value.publish(this, version);
 		}
 		
-		public function readCLIPEVENTFLAGS(version:uint):SWFClipEventFlags {
+		[Inline]
+		public final function readCLIPEVENTFLAGS(version:uint):SWFClipEventFlags {
 			return new SWFClipEventFlags(this, version);
 		}
 		
@@ -745,7 +805,8 @@
 		// Tag header
 		/////////////////////////////////////////////////////////
 		
-		public function readTagHeader():SWFRecordHeader {
+		[Inline]
+		public final function readTagHeader():SWFRecordHeader {
 			var pos:uint = position;
  			var tagTypeAndLength:uint = readUI16();
 			var tagLength:uint = tagTypeAndLength & 0x003f;
@@ -772,7 +833,8 @@
 		// SWF Compression
 		/////////////////////////////////////////////////////////
 		
-		public function swfUncompress(compressionMethod:String, uncompressedLength:uint = 0):void {
+		[Inline]
+		public final function swfUncompress(compressionMethod:String, uncompressedLength:uint = 0):void {
 			var pos:uint = position;
 			var ba:ByteArray = new ByteArray();
 			
@@ -859,11 +921,13 @@
 		// etc
 		/////////////////////////////////////////////////////////
 		
-		public function readRawTag():SWFRawTag {
+		[Inline]
+		public final function readRawTag():SWFRawTag {
 			return new SWFRawTag(this);
 		}
 		
-		public function skipBytes(length:uint):void {
+		[Inline]
+		public final function skipBytes(length:uint):void {
 			position += length;
 		}
 		

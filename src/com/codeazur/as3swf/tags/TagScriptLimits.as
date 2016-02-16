@@ -22,6 +22,11 @@
 			data.writeUI16(scriptTimeoutSeconds);
 		}
 		
+						public function clear():void 
+		{
+			
+		}
+		
 		public function get type():uint { return TYPE; }
 		public function get name():String { return "ScriptLimits"; }
 		public function get version():uint { return 7; }

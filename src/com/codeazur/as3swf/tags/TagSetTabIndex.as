@@ -16,6 +16,10 @@
 			tabIndex = data.readUI16();
 		}
 		
+						public function clear():void 
+		{
+			
+		}
 		public function publish(data:SWFData, version:uint):void {
 			data.writeTagHeader(type, 4);
 			data.writeUI16(depth);

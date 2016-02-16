@@ -13,6 +13,12 @@
 		public function TagSoundStreamBlock() {
 			_soundData = new ByteArray();
 		}
+	
+		public function clear():void 
+		{
+			_soundData.clear();
+			_soundData = null;
+		}
 		
 		public function get soundData():ByteArray { return _soundData; }
 		

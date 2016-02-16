@@ -6,6 +6,18 @@
 	
 	public class SWFTagFactory implements ISWFTagFactory
 	{
+		public function SWFTagFactory() 
+		{
+			super();
+		
+			
+		}
+		
+		public function clear():void
+		{
+			
+		}
+		
 		public function create(type:uint):ITag
 		{
 			switch(type) {

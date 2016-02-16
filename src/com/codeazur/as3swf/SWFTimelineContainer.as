@@ -46,10 +46,11 @@ package com.codeazur.as3swf
 
 	public class SWFTimelineContainer extends SWFEventDispatcher
 	{
+		public var maxLayerDepth:int;
 		// We're just being lazy here.
 		public static var TIMEOUT:int = 50;
-		public static var AUTOBUILD_LAYERS:Boolean = false;
-		public static var EXTRACT_SOUND_STREAM:Boolean = true;
+		public static var AUTOBUILD_LAYERS:Boolean = true;
+		public static var EXTRACT_SOUND_STREAM:Boolean = false;
 		
 		protected var _tags:Vector.<ITag>;
 		protected var _tagsRaw:Vector.<SWFRawTag>;
@@ -90,7 +91,95 @@ package com.codeazur.as3swf
 			
 			rootTimelineContainer = this;
 			
-			enterFrameProvider = new Sprite();
+			//enterFrameProvider = new Sprite();
+		}
+		
+		override public function clear():void 
+		{
+			super.clear();
+			
+			//rootTimelineContainer.clear();
+			//rootTimelineContainer = null;
+			
+			if(_tmpData)
+				_tmpData.clear();
+			_tmpData = null;
+			
+			frameLabels = null;
+			
+			if(currentFrame)
+				currentFrame.clear();
+			currentFrame = null;
+			
+			
+			//enterFrameProvider = null;
+			_dictionary = null;
+			_soundStream = null;
+			
+			if(jpegTablesTag)
+				jpegTablesTag.clear();
+			
+			var i:int;
+				
+			if (_tags)
+			{
+				//_tags
+				for (i = 0; i < _tags.length; i++)
+				{
+					_tags[i].clear();
+				}
+				
+				_tags.length = 0;
+			}
+			
+			if (_tagsRaw)
+			{
+				//_tagsRaw
+				for (i = 0; i < _tagsRaw.length; i++)
+				{
+					_tagsRaw[i].clear();
+				}
+				
+				_tagsRaw.length = 0;
+			}
+				
+			if (_scenes)
+			{
+				//_scenes
+				for (i = 0; i < _scenes.length; i++)
+				{
+					_scenes[i].clear();
+				}
+				
+				_scenes.length = 0;
+			}
+			
+			if (_frames)
+			{
+				//_frames
+				for (i = 0; i < _frames.length; i++)
+				{
+					_frames[i].clear();
+				}
+				
+				_frames.length = 0;
+			}
+			
+			if (_layers)
+			{
+				//_layers
+				for (i = 0; i < _layers.length; i++)
+				{
+					_layers[i].clear();
+				}
+				
+				_layers.length = 0;
+			}
+			
+			if (_tagFactory)
+			{
+				_tagFactory.clear();
+			}
 		}
 		
 		public function get tags():Vector.<ITag> { return _tags; }
@@ -442,10 +531,13 @@ package com.codeazur.as3swf
 			var depths:Dictionary = new Dictionary();
 			var depthsAvailable:Array = [];
 			
+			maxLayerDepth = 0;
+			
 			for(i = 0; i < frames.length; i++) {
 				var frame:Frame = frames[i];
 				for(depth in frame.objects) {
 					depthInt = parseInt(depth);
+					maxLayerDepth = Math.max(maxLayerDepth, depthInt);
 					if(depthsAvailable.indexOf(depthInt) > -1) {
 						(depths[depth] as Array).push(frame.frameNumber);
 					} else {
@@ -485,6 +577,8 @@ package com.codeazur.as3swf
 					}
 					layer.appendStrip(curStripType, startFrameIndex, endFrameIndex);
 				}
+				
+				maxLayerDepth = Math.max(maxLayerDepth, layer.depth);
 				_layers.push(layer);
 			}
 
@@ -528,5 +622,7 @@ package com.codeazur.as3swf
 			}
 			return str;
 		}
+		
+
 	}
 }

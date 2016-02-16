@@ -14,6 +14,11 @@
 			_symbols = new Vector.<SWFSymbol>();
 		}
 		
+		public function clear():void 
+		{
+			_symbols = null;
+		}
+		
 		public function get symbols():Vector.<SWFSymbol> { return _symbols; }
 		
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {

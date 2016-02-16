@@ -14,6 +14,12 @@ package com.codeazur.as3swf.tags
 			_password = new ByteArray();
 		}
 		
+		public function clear():void 
+		{
+			_password.clear();
+			_password = null;
+		}
+		
 		public function get password():ByteArray { return _password; }
 		
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {

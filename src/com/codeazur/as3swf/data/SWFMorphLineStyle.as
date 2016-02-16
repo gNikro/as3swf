@@ -71,5 +71,10 @@
 				"StartColor: " + ColorUtils.rgbaToString(startColor) + ", " +
 				"EndColor: " + ColorUtils.rgbaToString(endColor);
 		}
+		
+		public function clear():void 
+		{
+			fillType = null;
+		}
 	}
 }

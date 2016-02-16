@@ -17,6 +17,10 @@
 		public function TagDefineFontAlignZones() {
 			_zoneTable = new Vector.<SWFZoneRecord>();
 		}
+				public function clear():void 
+		{
+			
+		}
 		
 		public function get zoneTable():Vector.<SWFZoneRecord> { return _zoneTable; }
 		

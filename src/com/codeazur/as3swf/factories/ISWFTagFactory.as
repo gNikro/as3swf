@@ -5,5 +5,6 @@ package com.codeazur.as3swf.factories
 	public interface ISWFTagFactory
 	{
 		function create(type:uint):ITag;
+		function clear():void
 	}
 }

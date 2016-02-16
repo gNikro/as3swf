@@ -18,5 +18,10 @@ package com.codeazur.as3swf.timeline
 				"Name: " + name + ", " +
 				"Frame: " + frameNumber;
 		}
+		
+		public function clear():void 
+		{
+			name = null;
+		}
 	}
 }

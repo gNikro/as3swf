@@ -17,6 +17,23 @@
 			_frameLabels = new Vector.<SWFFrameLabel>();
 		}
 		
+		public function clear():void 
+		{
+			for (var i:int = 0; i < _scenes.length; i++)
+			{
+				_scenes[i].clear();
+			}
+			
+			_scenes = null;
+			
+			for (var j:int = 0; j < _frameLabels.length; j++)
+			{
+				_frameLabels[j].clear();
+			}
+			
+			_frameLabels = null;
+		}
+		
 		public function get scenes():Vector.<SWFScene> { return _scenes; }
 		public function get frameLabels():Vector.<SWFFrameLabel> { return _frameLabels; }
 		

@@ -33,6 +33,23 @@
 			_morphLineStyles = new Vector.<SWFMorphLineStyle>();
 		}
 		
+		public function clear():void 
+		{
+			var i:int;
+			for (i = 0; i < _morphFillStyles.length; i++)
+			{
+				_morphFillStyles[i].clear();
+			}
+			
+			for (i = 0; i < _morphLineStyles.length; i++)
+			{
+				_morphLineStyles[i].clear();
+			}
+			
+			_morphFillStyles = null;
+			_morphLineStyles = null;
+		}
+		
 		public function get characterId():uint { return _characterId; }
 		public function set characterId(value:uint):void { _characterId = value; }
 

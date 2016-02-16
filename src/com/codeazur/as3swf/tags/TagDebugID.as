@@ -15,6 +15,12 @@
 			_uuid = new ByteArray();
 		}
 		
+		public function clear():void 
+		{
+			_uuid.clear();
+			_uuid = null;
+		}
+		
 		public function get uuid():ByteArray { return _uuid; }
 		
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {

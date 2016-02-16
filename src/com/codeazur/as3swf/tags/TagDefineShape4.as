@@ -12,6 +12,14 @@
 		public var usesFillWindingRule:Boolean;
 		public var usesNonScalingStrokes:Boolean;
 		public var usesScalingStrokes:Boolean;
+		
+		override public function clear():void 
+		{
+			super.clear();
+			
+			edgeBounds.clear();
+			edgeBounds = null;
+		}
 
 		public function TagDefineShape4() {}
 		
