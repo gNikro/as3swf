@@ -18,14 +18,21 @@
 		public var yscale:Number;
 		public var rotation:Number;
 		
+		private var flMatrix:Matrix = new Matrix();
+		
 		public function SWFMatrix(data:SWFData = null) {
 			if (data != null) {
 				parse(data);
 			}
+			
+			data = null;
 		}
 		
-		public function get matrix():Matrix {
-			return new Matrix(scaleX, rotateSkew0, rotateSkew1, scaleY, translateX, translateY);
+
+		
+		public function getNormalMatrix():Matrix
+		{
+			return flMatrix;
 		}
 		
 		public function parse(data:SWFData):void {
@@ -48,11 +55,15 @@
 			translateX = data.readSB(translateBits);
 			translateY = data.readSB(translateBits);
 			// conversion to rotation, xscale, yscale
-			var px:Point = matrix.deltaTransformPoint(new Point(0, 1));
+			
+			flMatrix.setTo(scaleX, rotateSkew0, rotateSkew1, scaleY, translateX, translateY);
+			var px:Point = flMatrix.deltaTransformPoint(new Point(0, 1));
 			rotation = ((180 / Math.PI) * Math.atan2(px.y, px.x) - 90);
 			if(rotation < 0) { rotation = 360 + rotation; }
 			xscale = Math.sqrt(scaleX * scaleX + rotateSkew0 * rotateSkew0);
 			yscale = Math.sqrt(rotateSkew1 * rotateSkew1 + scaleY * scaleY);
+			
+			flMatrix.setTo(scaleX, rotateSkew0, rotateSkew1, scaleY, translateX / 20, translateY / 20);
 		}
 		
 		public function clone():SWFMatrix {
@@ -72,6 +83,11 @@
 		
 		public function toString():String {
 			return "(" + scaleX + "," + rotateSkew0 + "," + rotateSkew1 + "," + scaleY + "," + translateX + "," + translateY + ")";
+		}
+		
+		public function clear():void 
+		{
+			flMatrix = null;
 		}
 	}
 }
