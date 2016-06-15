@@ -66,7 +66,7 @@
 				// Not used
 				var codeTableOffset:uint = (wideOffsets ? data.readUI32() : data.readUI16());
 				for (i = 0; i < numGlyphs; i++) {
-					_glyphShapeTable.push(data.readSHAPE());
+					_glyphShapeTable.push(data.readSHAPE(20));
 				}
 				for (i = 0; i < numGlyphs; i++) {
 					_codeTable.push(wideCodes ? data.readUI16() : data.readUI8());

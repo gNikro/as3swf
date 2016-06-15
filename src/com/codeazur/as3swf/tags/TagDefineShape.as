@@ -31,7 +31,7 @@
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {
 			_characterId = data.readUI16();
 			shapeBounds = data.readRECT();
-			shapes = data.readSHAPEWITHSTYLE(level);
+			shapes = data.readSHAPEWITHSTYLE(level, 20);
 		}
 		
 		public function publish(data:SWFData, version:uint):void {

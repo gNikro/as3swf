@@ -31,7 +31,7 @@
 			usesFillWindingRule = ((flags & 0x04) != 0);
 			usesNonScalingStrokes = ((flags & 0x02) != 0);
 			usesScalingStrokes = ((flags & 0x01) != 0);
-			shapes = data.readSHAPEWITHSTYLE(level);
+			shapes = data.readSHAPEWITHSTYLE(level, 20);
 		}
 		
 		override public function publish(data:SWFData, version:uint):void {

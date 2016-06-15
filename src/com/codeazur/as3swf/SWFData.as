@@ -415,7 +415,7 @@
 		/////////////////////////////////////////////////////////
 		
 		[Inline]
-		public final function readSHAPE(unitDivisor:Number = 20):SWFShape {
+		public final function readSHAPE(unitDivisor:Number):SWFShape {
 			return new SWFShape(this, 1, unitDivisor);
 		}
 		
@@ -424,11 +424,11 @@
 		}
 		
 		[Inline]
-		public final function readSHAPEWITHSTYLE(level:uint = 1, unitDivisor:Number = 20):SWFShapeWithStyle {
+		public final function readSHAPEWITHSTYLE(level:uint, unitDivisor:Number):SWFShapeWithStyle {
 			return new SWFShapeWithStyle(this, level, unitDivisor);
 		}
 
-		public function writeSHAPEWITHSTYLE(value:SWFShapeWithStyle, level:uint = 1):void {
+		public function writeSHAPEWITHSTYLE(value:SWFShapeWithStyle, level:uint):void {
 			value.publish(this, level);
 		}
 		
@@ -451,7 +451,7 @@
 		}
 		
 		[Inline]
-		public final function readSTYLECHANGERECORD(states:uint, fillBits:uint, lineBits:uint, level:uint = 1):SWFShapeRecordStyleChange {
+		public final function readSTYLECHANGERECORD(states:uint, fillBits:uint, lineBits:uint, level:uint):SWFShapeRecordStyleChange {
 			return new SWFShapeRecordStyleChange(this, states, fillBits, lineBits, level);
 		}
 		
@@ -467,7 +467,7 @@
 		/////////////////////////////////////////////////////////
 		
 		[Inline]
-		public final function readFILLSTYLE(level:uint = 1):SWFFillStyle {
+		public final function readFILLSTYLE(level:uint):SWFFillStyle {
 			return new SWFFillStyle(this, level);
 		}
 		
@@ -476,7 +476,7 @@
 		}
 		
 		[Inline]
-		public final function readLINESTYLE(level:uint = 1):SWFLineStyle {
+		public final function readLINESTYLE(level:uint):SWFLineStyle {
 			return new SWFLineStyle(this, level);
 		}
 		
@@ -485,7 +485,7 @@
 		}
 		
 		[Inline]
-		public final function readLINESTYLE2(level:uint = 1):SWFLineStyle2 {
+		public final function readLINESTYLE2(level:uint):SWFLineStyle2 {
 			return new SWFLineStyle2(this, level);
 		}
 		
@@ -498,7 +498,7 @@
 		/////////////////////////////////////////////////////////
 		
 		[Inline]
-		public final function readBUTTONRECORD(level:uint = 1):SWFButtonRecord {
+		public final function readBUTTONRECORD(level:uint):SWFButtonRecord {
 			if (readUI8() == 0) {
 				return null;
 			} else {
@@ -542,7 +542,7 @@
 		/////////////////////////////////////////////////////////
 		
 		[Inline]
-		public final function readTEXTRECORD(glyphBits:uint, advanceBits:uint, previousRecord:SWFTextRecord = null, level:uint = 1):SWFTextRecord {
+		public final function readTEXTRECORD(glyphBits:uint, advanceBits:uint, previousRecord:SWFTextRecord, level:uint):SWFTextRecord {
 			if (readUI8() == 0) {
 				return null;
 			} else {
@@ -604,7 +604,7 @@
 		/////////////////////////////////////////////////////////
 		
 		[Inline]
-		public final function readGRADIENT(level:uint = 1):SWFGradient {
+		public final function readGRADIENT(level:uint):SWFGradient {
 			return new SWFGradient(this, level);
 		}
 		
@@ -613,7 +613,7 @@
 		}
 		
 		[Inline]
-		public final function readFOCALGRADIENT(level:uint = 1):SWFFocalGradient {
+		public final function readFOCALGRADIENT(level:uint):SWFFocalGradient {
 			return new SWFFocalGradient(this, level);
 		}
 		
@@ -622,7 +622,7 @@
 		}
 		
 		[Inline]
-		public final function readGRADIENTRECORD(level:uint = 1):SWFGradientRecord {
+		public final function readGRADIENTRECORD(level:uint):SWFGradientRecord {
 			return new SWFGradientRecord(this, level);
 		}
 		
@@ -635,7 +635,7 @@
 		/////////////////////////////////////////////////////////
 		
 		[Inline]
-		public final function readMORPHFILLSTYLE(level:uint = 1):SWFMorphFillStyle {
+		public final function readMORPHFILLSTYLE(level:uint):SWFMorphFillStyle {
 			return new SWFMorphFillStyle(this, level);
 		}
 		
@@ -644,7 +644,7 @@
 		}
 		
 		[Inline]
-		public final function readMORPHLINESTYLE(level:uint = 1):SWFMorphLineStyle {
+		public final function readMORPHLINESTYLE(level:uint):SWFMorphLineStyle {
 			return new SWFMorphLineStyle(this, level);
 		}
 		
@@ -653,16 +653,16 @@
 		}
 		
 		[Inline]
-		public final function readMORPHLINESTYLE2(level:uint = 1):SWFMorphLineStyle2 {
+		public final function readMORPHLINESTYLE2(level:uint):SWFMorphLineStyle2 {
 			return new SWFMorphLineStyle2(this, level);
 		}
 		
-		public function writeMORPHLINESTYLE2(value:SWFMorphLineStyle2, level:uint = 1):void {
+		public function writeMORPHLINESTYLE2(value:SWFMorphLineStyle2, level:uint):void {
 			value.publish(this, level);
 		}
 		
 		[Inline]
-		public final function readMORPHGRADIENT(level:uint = 1):SWFMorphGradient {
+		public final function readMORPHGRADIENT(level:uint):SWFMorphGradient {
 			return new SWFMorphGradient(this, level);
 		}
 		
@@ -671,7 +671,7 @@
 		}
 		
 		[Inline]
-		public final function readMORPHFOCALGRADIENT(level:uint = 1):SWFMorphFocalGradient {
+		public final function readMORPHFOCALGRADIENT(level:uint):SWFMorphFocalGradient {
 			return new SWFMorphFocalGradient(this, level);
 		}
 		
@@ -834,7 +834,7 @@
 		/////////////////////////////////////////////////////////
 		
 		[Inline]
-		public final function swfUncompress(compressionMethod:String, uncompressedLength:uint = 0):void {
+		public final function swfUncompress(compressionMethod:String, uncompressedLength:uint):void {
 			var pos:uint = position;
 			var ba:ByteArray = new ByteArray();
 			

@@ -41,7 +41,7 @@
 				fillStyleCount = data.readUI16();
 			}
 			for (i = 0; i < fillStyleCount; i++) {
-				_morphFillStyles.push(data.readMORPHFILLSTYLE());
+				_morphFillStyles.push(data.readMORPHFILLSTYLE(1));
 			}
 			// MorphLineStyleArray
 			var lineStyleCount:uint = data.readUI8();
@@ -49,10 +49,10 @@
 				lineStyleCount = data.readUI16();
 			}
 			for (i = 0; i < lineStyleCount; i++) {
-				_morphLineStyles.push(data.readMORPHLINESTYLE2());
+				_morphLineStyles.push(data.readMORPHLINESTYLE2(1));
 			}
-			startEdges = data.readSHAPE();
-			endEdges = data.readSHAPE();
+			startEdges = data.readSHAPE(20);
+			endEdges = data.readSHAPE(20);
 		}
 		
 		override public function publish(data:SWFData, version:uint):void {
@@ -88,7 +88,7 @@
 				startBytes.writeUI8(lineStyleCount);
 			}
 			for (i = 0; i < lineStyleCount; i++) {
-				startBytes.writeMORPHLINESTYLE2(SWFMorphLineStyle2(_morphLineStyles[i]));
+				startBytes.writeMORPHLINESTYLE2(SWFMorphLineStyle2(_morphLineStyles[i]), 1);
 			}
 			startBytes.writeSHAPE(startEdges);
 			body.writeUI32(startBytes.length);

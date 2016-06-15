@@ -50,7 +50,7 @@
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {
 			_characterId = data.readUI16();
 			var record:SWFButtonRecord;
-			while ((record = data.readBUTTONRECORD()) != null) {
+			while ((record = data.readBUTTONRECORD(1)) != null) {
 				_characters.push(record);
 			}
 			var action:IAction;
