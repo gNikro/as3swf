@@ -3,8 +3,7 @@ package com.codeazur.as3swf.timeline
 	import com.codeazur.as3swf.tags.TagPlaceObject;
 	import com.codeazur.as3swf.tags.TagRemoveObject;
 	import com.codeazur.utils.StringUtils;
-	import swfdata.FrameObjectData;
-	
+
 	import flash.utils.Dictionary;
 
 	public class Frame
@@ -114,12 +113,5 @@ package com.codeazur.as3swf.timeline
 			}
 			return str;
 		}
-		
-		public function addFrameObject(frameObjectData:FrameObjectData):void 
-		{
-			
-		}
-		
-
 	}
 }
