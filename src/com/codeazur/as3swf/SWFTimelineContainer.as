@@ -275,7 +275,7 @@ package com.codeazur.as3swf
 			var tagRaw:SWFRawTag = data.readRawTag();
 			var tagHeader:SWFRecordHeader = tagRaw.header;
 			var tag:ITag = tagFactory.create(tagHeader.type);
-			try {
+			
 				if(tag is SWFTimelineContainer) {
 					var timelineContainer:SWFTimelineContainer = tag as SWFTimelineContainer;
 					// Currently, the only SWFTimelineContainer (other than the SWF root
@@ -286,13 +286,7 @@ package com.codeazur.as3swf
 				}
 				// Parse tag
 				tag.parse(data, tagHeader.contentLength, _tmpVersion, async);
-			} catch(e:Error) {
-				// If we get here there was a problem parsing this particular tag.
-				// Corrupted SWF, possible SWF exploit, or obfuscated SWF.
-				// TODO: register errors and warnings
-				trace("WARNING: parse error: " + e.message + ", Tag: " + tag.name + ", Index: " + tags.length);
-				throw(e);
-			}
+			
 			// Register tag
 			tags.push(tag);
 			tagsRaw.push(tagRaw);

@@ -8,7 +8,7 @@
 	import flash.events.Event;
 	import flash.utils.ByteArray;
 	
-	public class TagDefineBits implements IDefinitionTag
+	public class TagDefineBits implements IBitmapTag
 	{
 		public static const TYPE:uint = 6;
 		
@@ -17,6 +17,7 @@
 		protected var _characterId:uint;
 
 		protected var _bitmapData:ByteArray;
+		protected var _bitmapAlphaData:ByteArray;
 		
 		public function TagDefineBits() {
 			_bitmapData = new ByteArray();
@@ -31,7 +32,10 @@
 		public function get characterId():uint { return _characterId; }
 		public function set characterId(value:uint):void { _characterId = value; }
 
+		public function get bitmapAlphaData():ByteArray { return _bitmapAlphaData; }
 		public function get bitmapData():ByteArray { return _bitmapData; }
+		
+		public function get completeBitmapData():BitmapData { return null; }
 		
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {
 			_characterId = data.readUI16();

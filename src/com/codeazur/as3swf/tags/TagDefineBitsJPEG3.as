@@ -9,8 +9,6 @@
 	{
 		public static const TYPE:uint = 35;
 		
-		protected var _bitmapAlphaData:ByteArray;
-		
 		public function TagDefineBitsJPEG3() {
 			_bitmapAlphaData = new ByteArray();
 		}
@@ -22,8 +20,6 @@
 			_bitmapAlphaData.clear();
 			_bitmapAlphaData = null;
 		}
-		
-		public function get bitmapAlphaData():ByteArray { return _bitmapAlphaData; }
 		
 		override public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {
 			_characterId = data.readUI16();

@@ -1,6 +1,8 @@
 ﻿package com.codeazur.as3swf.tags
 {
 	import com.codeazur.as3swf.data.consts.BitmapFormat;
+	import flash.display.BitmapData;
+	import flash.utils.ByteArray;
 
 	public class TagDefineBitsLossless2 extends TagDefineBitsLossless implements IDefinitionTag
 	{
@@ -15,9 +17,24 @@
 			tag.bitmapWidth = bitmapWidth;
 			tag.bitmapHeight = bitmapHeight;
 			if (_zlibBitmapData.length > 0) {
-				tag.zlibBitmapData.writeBytes(_zlibBitmapData);
+				tag._zlibBitmapData.writeBytes(_zlibBitmapData);
 			}
 			return tag;
+		}
+		
+		override protected function createBitmapData(width:Number, height:Number):BitmapData 
+		{
+			return new BitmapData(width, height, true, 0x0);
+		}
+		
+		override protected function readColor24(data:ByteArray):uint 
+		{
+			var a:uint = data.readUnsignedByte();
+			var r:uint = data.readUnsignedByte();
+			var g:uint = data.readUnsignedByte();
+			var b:uint = data.readUnsignedByte();
+			
+			return ((a << 24) | (r << 16) | (g << 8) | b);
 		}
 		
 		override public function get type():uint { return TYPE; }
