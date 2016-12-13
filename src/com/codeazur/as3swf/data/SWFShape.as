@@ -543,7 +543,8 @@
 									matrix = new Matrix();
 									
 									matrix.scale(m.xscale / 20, m.yscale / 20);
-									matrix.rotate(FastMath.convertToRadian(m.rotation));
+									//matrix.rotate(FastMath.convertToRadian(m.rotation));
+									matrix.rotate(m.rotation * 0.01745329251);
 									matrix.translate(m.translateX / 20, m.translateY / 20);
 									
 									handler.beginBitmapFill(
